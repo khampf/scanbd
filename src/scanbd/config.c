@@ -102,8 +102,8 @@ void cfg_do_parse(const char *config_file_name) {
         cfg = NULL;
     }
 
-    char wd[PATH_MAX] = {};
-    char config_file[PATH_MAX] = {};
+    char wd[PATH_MAX+1] = {};
+    char config_file[PATH_MAX+1] = {};
     char* scanbd_conf_dir = NULL;
 
     // get current directory
@@ -149,7 +149,7 @@ void cfg_do_parse(const char *config_file_name) {
 
 char *make_script_path_abs(const char *script) {
 
-    char* script_abs = malloc(PATH_MAX);
+    char* script_abs = malloc(PATH_MAX+1);
     assert(script_abs);
     strncpy(script_abs, SCANBD_NULL_STRING, PATH_MAX);
 

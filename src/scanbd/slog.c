@@ -26,7 +26,7 @@
 bool debug = false;
 unsigned int debug_level = 0;
 
-static char lpre[LINE_MAX] = "";
+static char lpre[LINE_MAX+1] = "";
 static int isInitialized = 0;
 
 void slog_init(const char *string) {
@@ -37,7 +37,7 @@ void slog_init(const char *string) {
 void
 slog(unsigned int level, const char *format, ...) {
     va_list	ap;
-    char	buffer[LINE_MAX] = "";
+    char	buffer[LINE_MAX+1] = "";
 
     if (isInitialized == 0) {
         slog_init("");

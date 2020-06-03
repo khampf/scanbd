@@ -177,8 +177,8 @@ static void hook_device_ex(const char *param, const char *action_name, const cha
         e += 1;
     }
     else {
-        char buf[PATH_MAX];
-        char* ptr = getcwd(buf, PATH_MAX - 1);
+        char buf[PATH_MAX+1];
+        char* ptr = getcwd(buf, PATH_MAX);
         if (!ptr) {
             slog(SLOG_ERROR, "can't get pwd");
         }
@@ -707,7 +707,7 @@ bool dbus_init(void) {
         return false;
     }
 #else
-    char match[PATH_MAX];
+    char match[PATH_MAX+1];
     snprintf(match, PATH_MAX, "type='signal',interface='%s'", DBUS_HAL_INTERFACE);
     slog(SLOG_ERROR, "dbus match %s", match);
     dbus_bus_add_match(conn, match, &dbus_error);

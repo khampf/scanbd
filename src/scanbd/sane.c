@@ -934,8 +934,8 @@ static void* sane_poll(void* arg) {
                     e += 1;
                 }
                 else {
-                    char buf[PATH_MAX];
-                    char* ptr = getcwd(buf, PATH_MAX - 1);
+                    char buf[PATH_MAX+1];
+                    char* ptr = getcwd(buf, PATH_MAX);
                     if (!ptr) {
                         slog(SLOG_ERROR, "can't get pwd");
                     }

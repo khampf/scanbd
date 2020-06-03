@@ -350,7 +350,7 @@ int main(int argc, char** argv) {
     }
 
     // We do this here as debugging is only completely initialized here
-    char prog_path[PATH_MAX] = "";
+    char prog_path[PATH_MAX+1] = "";
     strncpy(prog_path, argv[0], PATH_MAX); 
     char *my_name = basename(prog_path);
     if ( strncmp(my_name, NAME_MANAGER_MODE, PATH_MAX) == 0 ) {

@@ -29,11 +29,11 @@
 // this file is basicly the same as loader.c from the scanbuttond-project,
 // but modified to meet the needs of scanbd
 
-static char lib_dir[PATH_MAX] = SCANBD_NULL_STRING;
+static char lib_dir[PATH_MAX+1] = SCANBD_NULL_STRING;
 
 int scanbtnd_init() {
     char *backends_dir = NULL;
-    char backends_dir_abs[PATH_MAX] = SCANBD_NULL_STRING;
+    char backends_dir_abs[PATH_MAX+1] = SCANBD_NULL_STRING;
 
     backends_dir = cfg_getstr(cfg_getsec(cfg, C_GLOBAL), C_SCANBUTTONS_BACKENDS_DIR);
     if ( backends_dir && (backends_dir[0] != '/')) {
@@ -83,7 +83,7 @@ backend_t* scanbtnd_load_backend(const char* filename){
     const char* error;
     void* dll_handle;
 
-    char dll_path[PATH_MAX];
+    char dll_path[PATH_MAX+1];
     strncpy(dll_path, lib_dir, PATH_MAX);
     strncat(dll_path, "/", PATH_MAX - strlen(dll_path));
     strncat(dll_path, filename, PATH_MAX - strlen(dll_path));
